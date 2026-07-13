@@ -37,15 +37,18 @@
 ### 1. 下载脚本
 ```bash
 git clone https://github.com/gitlune/CPU-TEST.git
+```
+### 2.进入文件夹
+```bash
 cd CPU-TEST
 ```
-### 2. 赋予执行权限
+### 3. 赋予执行权限
 ```bash
 chmod +x cpu-test.sh
 ```
-### 3. 运行脚本
+### 4. 运行脚本
 ```bash
 bash cpu-test.sh
 ```
-### 然后自行选择线程数即可
+### 5. 然后自行选择线程数即可
 ## 欢迎反馈或讨论问题！
