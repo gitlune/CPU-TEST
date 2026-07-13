@@ -102,7 +102,7 @@ done
 
 clear
 printf '\033[41m\033[2J\033[H'
-printf '\033[32mCPU压力测试 V1.0\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中\033[0m\n'
+printf '\033[32mCPU压力测试 V1.0\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中...\033[0m\n'
 while true; do
     sleep 1
 done
