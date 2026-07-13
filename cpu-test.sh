@@ -2,7 +2,8 @@
 
 # 线程数选择变量
 THREAD_NUM=1
-
+# 存储后台进程PID的数组
+PIDS=""
 
 clear
 printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  重要提示：若无法退出，请使用 Ctrl+C 终止进程；\n  如系统完全无响应，可长按电源键强制关机。\n  仅供学习交流使用，一切后果自负！！！\n\033[0m\n'
@@ -61,6 +62,7 @@ printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gi
 sleep 1
 clear
 printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  4秒后开始！！！\033[0m'
+sleep 1
 clear
 printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n\033[0m'
 sleep 1
@@ -93,14 +95,52 @@ cpu_burn() {
     done
 }
 
+# 清理函数：杀死所有后台进程
+cleanup() {
+    clear
+    printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  正在停止所有测试进程...\033[0m\n'
+    
+    # 杀死所有后台进程
+    if [ -n "$PIDS" ]; then
+        for pid in $PIDS; do
+            kill -9 "$pid" 2>/dev/null
+        done
+    fi
+    
+    # 一同杀死所有cpu_burn进程
+    pkill -f "cpu_burn" 2>/dev/null
+    
+    clear
+    printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  已停止所有进程，即将退出！\033[0m\n'
+    sleep 2
+    clear
+    exit 0
+}
+
+# 设置trap捕获SIGINT信号（Ctrl+C）
+trap cleanup INT
+
+# 设置非阻塞读取，允许任意键退出
+stty -icanon time 0 min 0 2>/dev/null
+
 i=0
 while [ $i -lt $THREAD_NUM ]; do
     cpu_burn >/dev/null 2>&1 &
+    PIDS="$PIDS $!"
     i=$((i + 1))
 done
 
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中...\033[0m\n'
+printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中...\n\n  按任意键或 Ctrl+C 停止测试\033[0m\n'
+
+# 主循环：检测按键或等待
 while true; do
-    sleep 1
+    # 非阻塞读取一个字符
+    key=$(dd bs=1 count=1 2>/dev/null)
+    
+    # 如果读取到任何按键（包括空字符），则退出
+    if [ -n "$key" ] || [ $? -eq 0 ]; then
+        cleanup
+    fi
+    sleep 0.1
 done
