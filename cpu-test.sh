@@ -1,16 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
 # 线程数选择变量
 THREAD_NUM=1
 # 存储后台进程PID的数组
-PIDS=""
+PIDS=()
+# 保存原始终端状态
+ORIG_STTY=$(stty -g)
 
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  重要提示：若无法退出，请使用 Ctrl+C 终止进程；\n  如系统完全无响应，可长按电源键强制关机。\n  仅供学习交流使用，一切后果自负！！！\n\033[0m\n'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  重要提示：若无法退出，请使用 Ctrl+C 终止进程；\n  如系统完全无响应，可长按电源键强制关机。\n  仅供学习交流使用，一切后果自负！！！\n\033[0m\n'
 sleep 4
 
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  请选择线程配置：\n\n\n [1]1线程     [2]2线程     [3]4线程     [4]6线程\n [5]8线程     [6]12线程    [7]16线程    [8]20线程\n [9]24线程    [10]28线程   [11]32线程   [12]36线程\n [13]40线程   [14]44线程   [15]48线程   [16]52线程\n [17]56线程   [18]60线程   [19]64线程   [20]72线程\n [21]80线程   [22]96线程   [23]128线程  [24]156线程\n [25]192线程  [26]256线程  [27]320线程  [28]384线程\n [29]448线程  [30]512线程\n\n\n  输入数字(1-30)以继续：\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  请选择线程配置：\n\n\n [1]1线程     [2]2线程     [3]4线程     [4]6线程\n [5]8线程     [6]12线程    [7]16线程    [8]20线程\n [9]24线程    [10]28线程   [11]32线程   [12]36线程\n [13]40线程   [14]44线程   [15]48线程   [16]52线程\n [17]56线程   [18]60线程   [19]64线程   [20]72线程\n [21]80线程   [22]96线程   [23]128线程  [24]156线程\n [25]192线程  [26]256线程  [27]320线程  [28]384线程\n [29]448线程  [30]512线程\n\n\n  输入数字(1-30)以继续：\033[0m'
 read -r mode_input
 
 # 设置线程数
@@ -47,99 +49,98 @@ case "$mode_input" in
     30) THREAD_NUM=512 ;;
     *)
         clear
-        printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  输入错误，即将退出\033[0m'
+        printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  输入错误，即将退出\033[0m'
         sleep 1
         clear
-        exit 130
+        exit 1
         ;;
 esac
 
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  即将启动CPU压力测试...\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  即将启动CPU压力测试...\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  想取消赶紧按Ctrl+C！！！\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  想取消赶紧按Ctrl+C！！！\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  4秒后开始！！！\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  4秒后开始！！！\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$      $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                    $$$\n                    $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                             $$$\n                             $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n                    $$$\n                    $$$\n                    $$$$$$$$$$$$\n                    $$$$$$$$$$$$\n\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n                             $$$\n\033[0m'
 sleep 1
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  正在启动...\033[0m'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  正在启动...\033[0m'
 
 cpu_burn() {
     while : ; do
         x=1
-        for i in $(seq 1 200000); do
+        i=0
+        while [ "$i" -lt 200000 ]; do
             x=$((x * 1234567890123456789))
+            i=$((i+1))
         done
         str=""
-        for i in $(seq 1 200000); do
+        i=0
+        while [ "$i" -lt 200000 ]; do
             str="$str$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x$x"
+            i=$((i+1))
         done
-        for i in $(seq 1 500000); do
-            y=$(echo "$x / 3.14159265358979323846" | sed 's/\..*//')
+        i=0
+        while [ "$i" -lt 500000 ]; do
+            y=$((x / 3))
             x=$((y + x))
+            i=$((i+1))
         done
     done
 }
 
-# 清理函数：杀死所有后台进程
 cleanup() {
     clear
-    printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  正在停止所有测试进程...\033[0m\n'
-    
-    # 杀死所有后台进程
-    if [ -n "$PIDS" ]; then
-        for pid in $PIDS; do
-            kill -9 "$pid" 2>/dev/null
-        done
+    printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  正在停止所有测试进程...\033[0m\n'
+
+    # 恢复终端（关键修复）
+    stty "$ORIG_STTY" 2>/dev/null
+
+    # 精确杀死子进程（不再误杀）
+    if [ ${#PIDS[@]} -gt 0 ]; then
+        kill "${PIDS[@]}" 2>/dev/null
+        sleep 0.2
+        kill -9 "${PIDS[@]}" 2>/dev/null
     fi
-    
-    # 一同杀死所有cpu_burn进程
-    pkill -f "cpu_burn" 2>/dev/null
-    
+
     clear
-    printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  已停止所有进程，即将退出！\033[0m\n'
+    printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  已停止所有进程，即将退出！\033[0m\n'
     sleep 2
     clear
     exit 0
 }
 
-# 设置trap捕获SIGINT信号（Ctrl+C）
 trap cleanup INT
 
-# 设置非阻塞读取，允许任意键退出
-stty -icanon time 0 min 0 2>/dev/null
-
+# 启动线程
 i=0
-while [ $i -lt $THREAD_NUM ]; do
+while [ "$i" -lt "$THREAD_NUM" ]; do
     cpu_burn >/dev/null 2>&1 &
-    PIDS="$PIDS $!"
-    i=$((i + 1))
+    PIDS+=($!)
+    i=$((i+1))
 done
 
 clear
-printf '\033[32mCPU压力测试 V1.1\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中...\n\n  按任意键或 Ctrl+C 停止测试\033[0m\n'
+printf '\033[32mCPU压力测试 V1.2\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU压力中...\n\n  按任意键或 Ctrl+C 停止测试\033[0m\n'
 
-# 主循环：检测按键或等待
+# 修复：安全的按键检测（不会一启动就退出）
+stty -icanon -echo time 0 min 0
 while true; do
-    # 非阻塞读取一个字符
-    key=$(dd bs=1 count=1 2>/dev/null)
-    
-    # 如果读取到任何按键（包括空字符），则退出
-    if [ -n "$key" ] || [ $? -eq 0 ]; then
+    if read -r -n 1 -t 0.1 key; then
         cleanup
     fi
     sleep 0.1
