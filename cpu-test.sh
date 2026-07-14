@@ -56,6 +56,7 @@ case "$mode_input" in
         ;;
 esac
 
+# 启动
 clear
 printf '\033[32mCPU烤机 V1.3\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  即将启动CPU烤机...\033[0m'
 sleep 1
@@ -107,7 +108,7 @@ cpu_burn() {
         done
     done
 }
-# ===========================================================
+
 
 cleanup() {
     clear
@@ -141,9 +142,9 @@ while [ "$i" -lt "$THREAD_NUM" ]; do
 done
 
 clear
-printf '\033[32mCPU烤机 V1.3\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU烤机中...\n\n  按任意键或 Ctrl+C 停止测试\033[0m\n'
+printf '\033[32mCPU烤机 V1.3\nBy：Jiang Lune 伦\nhttps://github.com/gitlune/CPU-TEST/\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  启动完成；CPU烤机中...\n\n  按任意键或 Ctrl+C 停止烤机\033[0m\n'
 
-# 修复：按键检测，防止打开即退出
+# 按键检测，防止打开即退出
 stty -icanon -echo time 0 min 0
 while true; do
     if read -r -n 1 -t 0.1 key; then
