@@ -1,14 +1,14 @@
-# 终端命令行 CPU 烤机工具 (CPU Stress Test)
+# Shell 终端命令行 CPU 烤机工具 (CPU Stress Test)
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-lightgrey)
 ![Language](https://img.shields.io/badge/Language-Bash-green)
 
-一款轻量级的纯 Shell 脚本 CPU 压力测试工具，用于在终端中快速拉满 CPU 负载，检测系统稳定性、散热性能及硬件极限。
+一款轻量级的纯 Shell 脚本 CPU 烤机工具（纯压力，无分数/评分），用于在 Shell 终端中快速拉满 CPU 负载，检测系统稳定性、散热性能及硬件极限。
 
 ## 📖 简介
 
-本项目提供了一个简单的 Shell 脚本 (`cpu-test.sh`)，通过创建大量后台进程执行高强度数学运算（大整数乘法、浮点数除法及字符串处理），从而将 CPU 占用率提升至接近 100%。脚本内置了从 1 到 512 线程的可视化菜单，方便用户根据自己的配置选择测试等级。
+本项目提供了一个简单的 Shell 脚本 (`cpu-test.sh`)，通过创建大量后台进程执行高强度数学运算，从而将 CPU 占用率提升至接近 100%。脚本内置了从 1 到 512 线程的可视化菜单，方便用户根据自己的配置选择烤机等级。
 
 > **注意**：本工具主要用于学习操作系统进程管理、Shell 编程以及硬件压力测试。
 
@@ -16,8 +16,8 @@
 
 *   **纯 Shell 实现**：无任何外部依赖（仅需 `bash`/`sh`），兼容性强。
 *   **可视化菜单**：提供 1-512 线程的快捷选择菜单。
-*   **动态负载**：通过多层循环嵌套确保 CPU 处于高负荷状态。
-*   **跨平台**：支持Android、Linux、macOS（Intel/Apple Silicon）。
+*   **动态负载**：负载会随着时间增长而增大！！！。
+*   **跨平台**：支持Android、Linux、macOS（Intel/Apple Silicon）等 所有 Shell 命令行的工具和系统等。
 
 ## ⚠️ 风险提示（必读）
 
@@ -50,5 +50,5 @@ chmod +x cpu-test.sh
 ```bash
 bash cpu-test.sh
 ```
-### 5. 然后自行选择线程数即可
+### 5. 然后自行选择线程数即可，建议先选32或64线程，再选更高，以免启动死机！！！
 ## 欢迎反馈或讨论问题！
